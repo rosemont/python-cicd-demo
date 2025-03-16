@@ -39,7 +39,7 @@ jobs:
     if: github.ref == 'refs/heads/main'  # Only run on main branch pushes
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: python-app-output  # Matches the name from the upload step
           path: downloaded-files/  # Directory where artifacts are downloaded
