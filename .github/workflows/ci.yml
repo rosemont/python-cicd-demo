@@ -1,4 +1,4 @@
-name: Python CI
+name: Python CI/CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +26,12 @@ jobs:
 
     - name: Run tests
       run: pytest
+
+    - name: Archive artifacts
+      if: github.ref == 'refs/heads/main'  # Only on main branch pushes
+      uses: actions/upload-artifact@v3
+      with:
+        name: python-app-output
+        path: |
+          app.py
+          test_app.py
